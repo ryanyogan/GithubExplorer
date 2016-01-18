@@ -20,7 +20,8 @@ export default class Feed extends Component {
     });
 
     this.state = {
-      dataSource: dataSource.cloneWithRows(['A','B','C'])
+      dataSource: dataSource,
+      showProgress: true
     };
   }
 
@@ -45,16 +46,22 @@ export default class Feed extends Component {
 
         this.setState({
           dataSource: this.state.dataSource
-            .cloneWithRows(feedItems)
+            .cloneWithRows(feedItems),
+          showProgress: false
         });
-      });
+      })
     });
   }
 
   renderRow(rowData) {
+    console.log(rowData);
     return (
-      <Text style={{color: '#333'}}>
-        {rowData}
+      <Text style={{
+        color: '#333',
+        backgroundColor: '#FFF',
+        alignSelf: 'center'
+      }}>
+        {rowData.actor.login}
       </Text>
     );
   }
